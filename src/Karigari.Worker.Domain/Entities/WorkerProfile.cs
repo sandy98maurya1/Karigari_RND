@@ -119,7 +119,7 @@ public sealed class WorkerProfile
 
     public void ChangePrimaryContactNumber(string contactNumber)
     {
-        PrimaryContactNumber = ValueObjects.ContactNumber.Create(contactNumber, nameof(contactNumber));
+        PrimaryContactNumber = global::Karigari.Worker.Domain.ValueObjects.ContactNumber.Create(contactNumber, nameof(contactNumber));
     }
 
     public void Activate()
