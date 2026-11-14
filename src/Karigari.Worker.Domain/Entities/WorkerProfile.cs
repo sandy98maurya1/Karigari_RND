@@ -20,7 +20,7 @@ public sealed class WorkerProfile
         Id = id;
         FirstName = firstName;
         LastName = lastName;
-        ContactNumber = contactNumber;
+        PrimaryContactNumber = contactNumber;
         AlternateContactNumber = alternateContactNumber;
         DateOfBirth = dateOfBirth;
         IsActive = isActive;
@@ -36,7 +36,7 @@ public sealed class WorkerProfile
 
     public string LastName { get; private set; }
 
-    public ContactNumber ContactNumber { get; private set; }
+    public ContactNumber PrimaryContactNumber { get; private set; }
 
     public ContactNumber? AlternateContactNumber { get; private set; }
 
@@ -119,7 +119,7 @@ public sealed class WorkerProfile
 
     public void ChangePrimaryContactNumber(string contactNumber)
     {
-        ContactNumber = ContactNumber.Create(contactNumber, nameof(contactNumber));
+        PrimaryContactNumber = ValueObjects.ContactNumber.Create(contactNumber, nameof(contactNumber));
     }
 
     public void Activate()
