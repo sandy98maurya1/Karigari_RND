@@ -4,4 +4,6 @@ namespace Karigari.Worker.Domain;
 /// Assembly marker for the worker domain layer.
 /// Domain entities and value objects will be added after legacy field and rule discovery.
 /// </summary>
-public sealed class AssemblyMarker;
+public sealed class AssemblyMarker
+{
+}
