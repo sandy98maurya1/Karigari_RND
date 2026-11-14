@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Karigari.Worker.Api</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Karigari.Worker.Application\Karigari.Worker.Application.csproj" />
+    <ProjectReference Include="..\Karigari.Worker.Infrastructure\Karigari.Worker.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

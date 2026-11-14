@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Karigari.Worker.Application</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Karigari.Worker.Domain\Karigari.Worker.Domain.csproj" />
+  </ItemGroup>
+</Project>

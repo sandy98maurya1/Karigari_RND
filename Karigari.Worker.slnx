@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/Karigari.Worker.Api/Karigari.Worker.Api.csproj" />
+  <Project Path="src/Karigari.Worker.Domain/Karigari.Worker.Domain.csproj" />
+  <Project Path="src/Karigari.Worker.Application/Karigari.Worker.Application.csproj" />
+  <Project Path="src/Karigari.Worker.Infrastructure/Karigari.Worker.Infrastructure.csproj" />
+</Solution>
