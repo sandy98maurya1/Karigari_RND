@@ -1,3 +1,5 @@
+using Karigari.Worker.Domain.Entities;
+
 namespace Karigari.Worker.Application.Workers.Registration;
 
 /// <summary>
@@ -12,7 +14,7 @@ public sealed class RegisterWorkerHandler(IWorkerProfileRepository workerProfile
         ArgumentNullException.ThrowIfNull(command);
         cancellationToken.ThrowIfCancellationRequested();
 
-        var profile = Domain.Entities.WorkerProfile.Create(
+        var profile = WorkerProfile.Create(
             command.FirstName,
             command.LastName,
             command.ContactNumber,
