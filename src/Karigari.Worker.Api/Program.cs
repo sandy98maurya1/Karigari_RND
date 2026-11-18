@@ -1,3 +1,6 @@
+using Karigari.Worker.Api.Endpoints;
+using Karigari.Worker.Application.Workers.Registration;
+using Karigari.Worker.Infrastructure;
 using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +15,16 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Worker registration and profile API for the Karigari platform."
     });
 });
+
+var connectionString = builder.Configuration.GetConnectionString("Karigari");
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    throw new InvalidOperationException(
+        "Connection string 'Karigari' is missing. Configure it using .NET User Secrets.");
+}
+
+builder.Services.AddScoped<RegisterWorkerHandler>();
+builder.Services.AddWorkerInfrastructure(connectionString);
 
 var app = builder.Build();
 
@@ -31,6 +44,8 @@ app.MapGet("/health/live", () => Results.Ok(new
 }))
 .WithName("Liveness")
 .WithTags("Health");
+
+app.MapWorkerRegistrationEndpoints();
 
 app.Run();
 
