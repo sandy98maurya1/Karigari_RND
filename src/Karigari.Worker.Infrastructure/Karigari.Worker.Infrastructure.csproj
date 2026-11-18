@@ -1,9 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <RootNamespace>Karigari.Worker.Infrastructure</RootNamespace>
-  </PropertyGroup>
+  <PropertyGroup><RootNamespace>Karigari.Worker.Infrastructure</RootNamespace></PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Karigari.Worker.Application\Karigari.Worker.Application.csproj" />
     <ProjectReference Include="..\Karigari.Worker.Domain\Karigari.Worker.Domain.csproj" />
   </ItemGroup>
+  <ItemGroup><PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.15" /></ItemGroup>
 </Project>
