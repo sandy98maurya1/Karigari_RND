@@ -3,6 +3,9 @@
     <RootNamespace>Karigari.Worker.Api</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.3.1" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Karigari.Worker.Application\Karigari.Worker.Application.csproj" />
     <ProjectReference Include="..\Karigari.Worker.Infrastructure\Karigari.Worker.Infrastructure.csproj" />
   </ItemGroup>
