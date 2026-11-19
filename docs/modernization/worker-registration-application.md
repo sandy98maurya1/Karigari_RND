@@ -1,21 +1,23 @@
-# Worker registration — application increment
+# Worker registration — application and persistence increment
 
 ## Implemented
 
-- `RegisterWorkerCommand` defines the application input.
-- `RegisterWorkerHandler` creates a domain `WorkerProfile` and delegates persistence.
-- `IWorkerProfileRepository` defines the persistence boundary.
-- `RegisterWorkerResult` returns the persisted worker ID and safe profile fields.
+- `RegisterWorkerCommand`, `RegisterWorkerHandler`, and `RegisterWorkerResult`.
+- `IWorkerProfileRepository` persistence boundary.
+- EF Core SQL Server `WorkerDbContext`, entity mapping, and repository adapter.
+- Dependency injection for the application handler and SQL Server adapter.
+- HTTP endpoint: `POST /api/v1/workers/registrations`.
 
-## Deliberate boundaries
+## Registration behavior
 
-- No HTTP endpoint is exposed in this increment. The API endpoint will be added together with a real persistence adapter so the API does not claim registration succeeded when nothing was stored.
-- No in-memory or fake repository is registered.
-- No SQL Server provider, connection string, database creation, migration execution, or database write is included.
-- The repository implementation must target a new, isolated development database. The existence and backup status of any historical Karigari database remain unverified.
-- New profiles remain inactive until a separately designed verification workflow activates them.
-- Contact-number validation does not verify ownership or replace OTP verification.
+- Successful registration persists a profile and returns HTTP 201 with the generated worker ID.
+- Invalid domain input returns HTTP 400.
+- New profiles remain inactive until a separately designed contact-verification workflow activates them.
+- Contact-number format validation does not prove ownership or replace OTP verification.
+- Credentials, OTPs, and token material are excluded from the worker profile.
 
-## Next increment
+## Database boundary
 
-Implement the SQL Server persistence adapter and schema for a new isolated development database, then wire the application handler into `POST /api/v1/workers`. Before database setup, confirm the local SQL Server instance and the intended isolated development database name.
+The adapter uses isolated `KarigariWorkerDev` through `ConnectionStrings:Karigari`. Store the local connection string in .NET User Secrets. Do not connect to or modify `KarigariUserManagement` or production.
+
+The EF migration must be generated and reviewed before applying it. Application startup does not automatically modify the database.
